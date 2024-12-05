@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche d'Images</title>
+</head>
+<body>
+    <h1>Recherche d'Images avec Giphy</h1>
+    <input type="text" id="keyword" placeholder="Entrez un mot-clé">
+    <button id="search">Rechercher</button>
+    <div id="results"></div>    <script>
+        document.getElementById("search").onclick = function() {
+            var keyword = document.getElementById("keyword").value;
+            var apiKey = 'MFah4mEEzRxxtWfCKNNwz3JuWHXyUM6H';  // Remplacez par votre clé API
+            var xhr = new XMLHttpRequest();
+            var url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${keyword}&limit=1`;
+            console.log(url)
+            xhr.open('GET', url);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+                    var imageUrl = response.data[0].images.fixed_height.url;
+                    var imgTag = `<img src="${imageUrl}" alt="Image">`;
+                    document.getElementById("results").innerHTML = imgTag;
+                } else if (xhr.readyState === 4) {
+                    alert("Erreur lors de la récupération des images.");
+                }
+            };
+            xhr.send();
+        };
+    </script>
+</body>
+</html>

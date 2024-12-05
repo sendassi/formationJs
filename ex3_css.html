@@ -1,0 +1,19 @@
+<html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surbrillance au clic</title>
+  </head>
+  <body>
+    <p id="premier">Texte important</p>
+    <p id="second">Autre texte</p>  
+    <script>
+      document.getElementById('second').addEventListener('click', function () {
+        this.style.backgroundColor = 'yellow';
+      });    
+      document.getElementById('premier').addEventListener('click', function () {
+        this.style.backgroundColor = 'red';
+      });  
+      </script>
+  </body>
+  </html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- Explorer XMLHttpRequest -->
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Explorer XMLHttpRequest</title>
+   <style>
+       table {
+           width: 100%;
+           border-collapse: collapse;
+           margin: 20px 0;
+       }
+       th, td {
+           border: 1px solid #ccc;
+           padding: 10px;
+           text-align: left;
+       }
+       th {
+           background-color: #F4F4F4
+;
+       }
+   </style>
+</head>
+<body>
+   <h1>Explorer les Méthodes et Attributs de XMLHttpRequest</h1>
+   <button id="fetch-users">Récupérer les utilisateurs</button>
+   <button id="abort-request">Annuler la requête</button>
+   <p id="status"></p>
+   <table id="user-table">
+       <thead>
+           <tr>
+               <th>Nom</th>
+               <th>Email</th>
+               <th>Téléphone</th>
+           </tr>
+       </thead>
+       <tbody></tbody>
+   </table>   <script>
+       // Sélection des éléments
+       const fetchButton = document.getElementById('fetch-users');
+       const abortButton = document.getElementById('abort-request');
+       const statusElement = document.getElementById('status');
+       const tableBody = document.querySelector('#user-table tbody');       let xhr; // Variable pour stocker l'objet XMLHttpRequest       // Fonction pour afficher les données dans un tableau
+       function displayUsers(users) {
+           tableBody.innerHTML = ''; // Effacer les données précédentes
+           users.forEach(user => {
+               const row = document.createElement('tr');
+               row.innerHTML = `
+                   <td>${user.name}</td>
+                   <td>${user.email}</td>
+                   <td>${user.phone}</td>
+               `;
+               tableBody.appendChild(row);
+           });
+       }       // Fonction pour récupérer les utilisateurs
+       function fetchUsers() {
+           xhr = new XMLHttpRequest();
+           xhr.open('GET', 'https://jsonplaceholder.typicode.com/users', true);           // Ajout d'un délai d'attente
+           xhr.timeout = 5000;           // Gestion des étapes de la requête
+           xhr.onreadystatechange = function () {
+               statusElement.textContent = `État : ${xhr.readyState}`;
+               if (xhr.readyState === 4) {
+                   if (xhr.status === 200) {
+                       const users = JSON.parse(xhr.responseText);
+                       displayUsers(users);
+                       statusElement.textContent = 'Données récupérées avec succès.';
+                   } else {
+                       statusElement.textContent = `Erreur : ${xhr.status} (${xhr.statusText})`;
+                   }
+               }
+           };           // Gestion du délai d'attente
+           xhr.ontimeout = function () {
+               statusElement.textContent = 'Erreur : Le délai d’attente a expiré.';
+           };           // Gestion des erreurs
+           xhr.onerror = function () {
+               statusElement.textContent = 'Erreur : Une erreur s’est produite lors de la requête.';
+           };           // Envoi de la requête
+           xhr.send();
+       }       // Fonction pour annuler la requête
+       function abortRequest() {
+           if (xhr) {
+               xhr.abort();
+               statusElement.textContent = 'Requête annulée.';
+           }
+       }       // Écouteurs pour les boutons
+       fetchButton.addEventListener('click', fetchUsers);
+       abortButton.addEventListener('click', abortRequest);
+   </script>
+</body>
+</html>

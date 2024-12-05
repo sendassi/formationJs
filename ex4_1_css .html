@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="UTF-8">
+   <title>Exercice getAttribute</title>
+</head>
+<body>
+   <img src="./images/tunisia1.jpg" alt="Image 1">
+   <img src="./images/tunisia2.jpg " alt="Image 2">
+   <img src="./images/tunisia3.jpg " alt="Image 3">   <script>
+       document.querySelectorAll('img').forEach(function (image) {
+           image.addEventListener('click', function () {
+               console.log(this.getAttribute('src'));
+           });
+       });
+   </script>
+</body>
+</html>

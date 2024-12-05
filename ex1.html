@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*var nom=prompt("veillez saisir votre nom :) ");
+          alert("Bonjour " +nom+ "! Bienvenue dans le monde de JavaScript");  */
+
+        /* let num1 = Number(prompt("Entrez le premier nombre :"));
+        let num2 = Number(prompt("Entrez le deuxième nombre :"));
+
+         console.log(`Somme : ${num1 + num2}`);
+         console.log(`Produit : ${num1 * num2}`);
+         console.log(`Différence : ${num1 - num2}`)
+         let maVariable = 10 */
+/* maVariable = "Bonjour"
+console.log('Le contenu de maVariable est : '+ maVariable); */
+/*************************************************************************/
+
+/* var saisie = prompt('Que veux-tu dire ?');
+if (saisie === 'bonjour') {
+ alert('Bonjour à toi !');
+} else if (saisie === 'tu vas bien ?') {
+ alert('Bien, et toi ?');
+} else {
+ alert("Je ne comprends pas.");
+} */
+/*************************************************************************/
+/* var etat = prompt('Comment te sens-tu ? (bien/mal)');
+if (etat === 'bien') {
+ var parler = prompt('Super ! Tu veux parler d\'autre chose ? (oui/non)');
+ if (parler === 'oui') {
+   alert('OK, que veux-tu savoir ?');
+ } else {
+   alert('D\'accord, bonne journée !');
+ }
+} else if (etat === 'mal') {
+ var enParler = prompt('Oh, désolé de l\'entendre. Tu veux en parler ? (oui/non)');
+ if (enParler === 'oui') {
+   alert('Je suis là pour toi.');
+ } else {
+   alert('Je comprends, courage !');
+ }
+} else {
+ alert("Je ne comprends pas.");
+} */
+/***************************exFizzBuzz**********************************************/
+/* function multipleTrois(nombre) {
+            return nombre % 3 == 0;
+        }
+        function multipleCind(nombre) {
+            return nombre % 5 == 0;
+        }
+        for (let i = 1; i < 200; i++)
+            if (multipleCind(i) && multipleTrois(i)) {
+                console.log(`${i} est FizzBUZZ`);            } else if (multipleCind(i)) {
+                console.log(`${i} est BUZZ`);
+            } else if (multipleTrois(i)) {
+                console.log(`${i} est FIZZ`);
+        } */
+ /***************************Devine le nombre**********************************************/   
+/*  var ordinateur= Math.round(Math.random()* 100) ; 
+        for (let i = 1; i < 10; i++){  
+        var saisi = prompt('entrer une valeur de 0 a 100');
+           if (saisi<ordinateur) { alert('Plus grand'); }           
+           else if (saisi>ordinateur) { alert('Plus petit');  } 
+           else { alert('bravo');   }
+        }  */
+ /**************************jeuChifouMi**********************************************/   
+/*  var tabjeu=["pierre","feuille","ciseaux"];
+
+     for (let i = 1; i < 3; i++){  
+        var saisi = prompt('entrer votre choix pierre or feuille ou ciseaux');
+           if (saisi>tabjeu[1]) {alert('les ciseaux coupent la feuille'); }           
+           else if (saisi>tabjeu[2]) {alert('la pierre casse les ciseaux ');  } 
+           else if (saisi>tabjeu[0]) {alert('la feuille enveloppe la pierre');  } 
+           else { alert('aucune point n est accorder');   }
+        }   */
+        
+        
+// Fichier : chifoumi.js
+// Fonction pour comparer les choix et déterminer le gagnant
+/* function comparer(choix1, choix2) {
+   if (choix1 === choix2) {
+       return "aucun"; // Égalité
+   }
+   if (
+       (choix1 === "pierre" && choix2 === "ciseaux") ||
+       (choix1 === "ciseaux" && choix2 === "papier") ||
+       (choix1 === "papier" && choix2 === "pierre")
+   ) {
+       return "joueur"; // Le joueur gagne
+   }
+   return "ordi"; // L'ordinateur gagne
+}
+// Variables pour le score
+let scoreOrdi = 0;
+let scoreJoueur = 0;
+// Boucle pour 3 manches
+for (let manche = 1; manche <= 3; manche++) {
+   console.log(`Manche ${manche}`);
+   // Générer un choix aléatoire pour l'ordinateur
+   const choixPossibles = ["pierre", "papier", "ciseaux"];
+   const choixOrdi = choixPossibles[Math.floor(Math.random() * 3)];
+   // Demander le choix du joueur
+   let choixUtilisateur = prompt("Choisissez entre pierre, papier ou ciseaux :").toLowerCase();
+   // Valider l'entrée de l'utilisateur
+   while (!choixPossibles.includes(choixUtilisateur)) {
+       choixUtilisateur = prompt("Entrée invalide. Choisissez entre pierre, papier ou ciseaux :").toLowerCase();
+   }
+   // Comparer les choix
+   const resultat = comparer(choixUtilisateur, choixOrdi);
+   // Afficher les choix et le résultat
+   console.log(`Joueur : ${choixUtilisateur} - Ordinateur : ${choixOrdi}`);
+   if (resultat === "joueur") {
+       console.log("Le joueur remporte la manche !");
+       scoreJoueur++;
+   } else if (resultat === "ordi") {
+       console.log("L'ordinateur remporte la manche !");
+       scoreOrdi++;
+   } else {
+       console.log("Égalité !");
+   }
+}
+// Afficher le score final
+console.log(`Score final - Joueur : ${scoreJoueur}, Ordinateur : ${scoreOrdi}`);
+// Déterminer le gagnant de la partie
+if (scoreJoueur > scoreOrdi) {
+   console.log("Le joueur remporte la partie !");
+} else if (scoreOrdi > scoreJoueur) {
+   console.log("L'ordinateur remporte la partie !");
+} else {
+   console.log("Match nul !");
+}
+Les conversations ont lieu dans les canaux. Envoyez un bref message pour le rejoindre. */
+/****************************************************************************************************/$
+
+    </script>
+</body>
+
+</html>

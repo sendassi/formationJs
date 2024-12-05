@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+/* var annuaire = {
+        Alice: "123-456-789",
+        Bob: "987-654-321",
+        Charlie: "555-555-555",
+        Diane: "111-222-333",
+      };   
+       function rechercherContact(nom) {
+        if (annuaire[nom]) {
+          return annuaire[nom];
+        } else {
+          return "Contact non trouvé.";
+        }
+      }      
+      function listerContacts() {
+        for (let nom in annuaire) {
+          console.log('${nom} : ${annuaire[nom]}');
+        }
+      }     
+       function ajouterContact(nom, numero) {
+        annuaire[nom] = numero;
+        console.log('Le contact ${nom} a été ajouté avec le numéro ${numero}.');
+      }     
+       function supprimerContact(nom) {
+        if (annuaire[nom]) {
+          delete annuaire[nom];
+          console.log('Le contact ${nom} a été supprimé.');
+        } else {
+          console.log("Le contact n'existe pas.");
+        }
+      }
+      function menu() {
+        let choix;
+        do {
+          choix = prompt(
+            "Choisissez une option:\n" +
+              "r - Rechercher un contact\n" +
+              "l - Lister tous les contacts\n" +
+              "a - Ajouter un contact\n" +
+              "s - Supprimer un contact\n" +
+              "q - Quitter"
+          );         
+           switch (choix) {
+            case "r":
+              let nomRecherche = prompt("Entrez le nom à rechercher : ");
+              alert(rechercherContact(nomRecherche));
+              break;
+            case "l":
+              alert(listerContacts());
+              break;
+            case "a":
+              let nomAjout = prompt("Entrez le nom du contact à ajouter : ");
+              let numeroAjout = prompt(
+                "Entrez le numéro du contact à ajouter : "
+              );
+              alert(ajouterContact(nomAjout, numeroAjout));
+              break;
+            case "s":
+              let nomSuppression = prompt(
+                "Entrez le nom du contact à supprimer : "
+              );
+              alert(supprimerContact(nomSuppression));
+              break;
+            case "q":
+              alert("Au revoir !");
+              break;
+            default:
+              alert("Choix invalide, veuillez réessayer.");
+              break;
+          }
+        } while (choix !== "q");
+      }
+      menu() */
+      var annuaire = {
+    "Alice": "123-456-789",
+    "Bob": "987-654-321",
+    "Charlie": "555-555-555",
+    "Diane": "111-222-333"
+};function repertoire() {
+    let choix;    // Boucle principale du menu
+    do {
+        // Afficher le menu et demander un choix à l'utilisateur
+        choix = prompt(
+            "Répertoire téléphonique :fichier_rolodex:\n" +
+            "(r) Rechercher un numéro\n" +
+            "(l) Lister tous les contacts\n" +
+            "(a) Ajouter un contact\n" +
+            "(s) Supprimer un contact\n" +
+            "(q) Quitter\n" +
+            "Entrez votre choix :"
+        );       
+         switch (choix) {
+            case 'r':
+                // Recherche d'un numéro
+                let nomRecherche = prompt("Entrez le nom à rechercher :");
+                let numero = annuaire[nomRecherche];
+                alert(numero ? `Le numéro de ${nomRecherche} est : ${numero}` : `${nomRecherche} n'existe pas dans l'annuaire.`);
+                break;            case 'l':
+                // Liste des contacts
+                console.log("Liste des contacts :");
+                for (let nom in annuaire) {
+                    console.log(`${nom} : ${annuaire[nom]}`);
+                }
+                alert("La liste des contacts a été affichée dans la console.");
+                break;            case 'a':
+                // Ajout d'un contact
+                let nouveauNom = prompt("Entrez le nom du nouveau contact :");
+                if (annuaire[nouveauNom]) {
+                    alert(`${nouveauNom} existe déjà dans l'annuaire.`);
+                } else {
+                    let nouveauNumero = prompt("Entrez le numéro de téléphone :");
+                    annuaire[nouveauNom] = nouveauNumero;
+                    alert(`${nouveauNom} a été ajouté avec le numéro ${nouveauNumero}.`);
+                }
+                break;            case 's':
+                // Suppression d'un contact
+                let nomASupprimer = prompt("Entrez le nom du contact à supprimer :");
+                if (annuaire[nomASupprimer]) {
+                    delete annuaire[nomASupprimer];
+                    alert(`${nomASupprimer} a été supprimé de l'annuaire.`);
+                } else {
+                    alert(`${nomASupprimer} n'existe pas dans l'annuaire.`);
+                }
+                break;            case 'q':
+                // Quitter le programme
+                alert("Au revoir !");
+                break;            default:
+                // Option invalide
+                alert("Choix invalide. Veuillez réessayer.");
+        }    } while (choix !== 'q'); 
+        // Quitter la boucle si l'utilisateur choisit 'q'
+}// Appeler la fonction pour démarrer le programme
+repertoire();
+    </script>
+</body>
+
+</html>
