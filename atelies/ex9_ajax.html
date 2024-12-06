@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS</title>
+</head><body>   
+     <h1>Géolocalisation d'un Lieu</h1>
+    <input type="text" id="place" placeholder="Entrez un lieu" />
+    <button onclick="getLocation()">Trouver</button>
+    <div id="location"></div>
+    <script>
+        const url_api='https://jsonplaceholder.typicode.com/users'
+        function getLocation() {
+            const place = document.getElementById('place').value;
+            const location = document.getElementById('location');
+            fetch(`https://nominatim.openstreetmap.org/search?q=${place}&format=json`)
+                .then(response => response.json())
+                .then(data=>{
+                    var name =data[0].name;
+                    var display_name= data[0].display_name;
+                    var lat= data[0].lat;
+                    var lon= data[0].lon;
+                    var contenu=`
+                    ${display_name},
+                    lat: ${lat},
+                    lon ${lon}
+                    `;
+                    location.innerHTML = contenu;
+                })        
+                }   
+                 </script>
+                </body>
+                </html>
+
+

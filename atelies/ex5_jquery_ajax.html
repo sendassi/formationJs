@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestion des Tâches Militaires</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+
+        .animated-image { transition: transform 0.3s ease, opacity 0.5s ease; }
+
+        .animated-image:hover { transform: scale(1.1); opacity: 0.8; }
+
+        .task:hover { background-color: #f0f0f0; }
+
+        .post { transition: opacity 1s ease-in-out; }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+<div class="container mt-4">
+
+    <h1 class="text-center">Gestion des Tâches Militaires</h1>
+
+
+
+    <div class="form-group">
+
+        <label for="taskTitle">Titre de la tâche</label>
+
+        <input type="text" id="taskTitle" class="form-control" placeholder="Entrez le titre de la tâche...">
+
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label for="taskDeadline">Date d'échéance</label>
+
+        <input type="text" id="taskDeadline" class="form-control" placeholder="Entrez la date d'échéance...">
+
+    </div>
+
+
+
+    <button id="addTask" class="btn btn-success">Ajouter la tâche</button>
+
+    <button id="hideButton" class="btn btn-secondary">Cacher les éléments</button>
+
+
+
+    <ul id="taskList" class="list-group mt-3"></ul>
+
+
+
+    <div id="calendar" class="mt-5"></div>
+
+
+
+    <div id="taskInfo" class="mt-5"><h3>Informations sur les Missions Passées</h3></div>
+
+
+
+    <div class="mt-5">
+
+        <h3>Quelques Missions de Patrouille</h3>
+
+        <img src="images/tunisia1.jpg" class="img-fluid rounded animated-image" alt="Mission militaire">
+
+        <img src="https://example.com/image-patrouille.jpg" class="img-fluid rounded animated-image" alt="Patrouille en forêt">
+
+    </div>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+
+        $('#taskDeadline').datepicker({ dateFormat: 'yy-mm-dd' });
+
+
+
+        $('#addTask').click(function() {
+
+            const taskTitle = $('#taskTitle').val();
+
+            const taskDeadline = $('#taskDeadline').val();
+
+            if (taskTitle && taskDeadline) {
+
+                $('#taskList').append(`<li class="task list-group-item" style="display:none;">
+
+                                        <strong>${taskTitle}</strong> 
+
+                                        <span class="badge badge-primary ml-2">${taskDeadline}</span> 
+
+                                        <button class="deleteBtn btn btn-danger btn-sm ml-2">Supprimer</button>
+
+                                    </li>`);
+
+                $('#taskList li:last-child').fadeIn(1000);
+
+                $('#taskTitle').val('');
+
+                $('#taskDeadline').val('');
+
+            }
+
+       
+
+
+
+            });
+
+
+
+            // Supprimer une tâche
+
+            $('#taskList').on('click', '.deleteBtn', function() {
+
+                $(this).parent().fadeOut(500, function() {
+
+                    $(this).remove();
+
+                });
+
+            });
+
+
+
+            // Cacher tous les éléments de la page
+
+            $('#hideButton').click(function() {
+
+                $('body').fadeOut();
+
+            });
+
+
+
+            // Récupérer des informations via AJAX (API publique)
+
+            $.get('https://jsonplaceholder.typicode.com/posts', function(data) {
+
+                data.slice(0, 5).forEach(post => {
+
+                    $('#taskInfo').append(`
+
+                        <div class="post" style="display:none;">
+
+                            <h3>${post.title}</h3>
+
+                            <p>${post.body}</p>
+
+                            <button class="hidePost btn btn-warning btn-sm">Masquer</button>
+
+                        </div>
+
+                    `);
+
+                    // Animation pour faire apparaître les posts
+
+                    $('#taskInfo .post:last-child').fadeIn(1000);
+
+                });
+
+            });
+
+
+
+            // Masquer un post lorsqu'on clique sur "Masquer"
+
+            $('#taskInfo').on('click', '.hidePost', function() {
+
+                $(this).parent().fadeOut(500, function() {
+
+                    $(this).remove();
+
+                });
+
+            });
+
+
+
+            // Animation pour les images (Apparition en fondu et survol)
+
+            $('.animated-image').hide().fadeIn(1500);
+
+
+
+            // Survol des images pour appliquer une animation de zoom
+
+            $('.animated-image').hover(
+
+                function() {
+
+                    $(this).css('transform', 'scale(1.1)');
+
+                    $(this).css('opacity', '0.8');
+
+                }, function() {
+
+                    $(this).css('transform', 'scale(1)');
+
+                    $(this).css('opacity', '1');
+
+                }
+
+            );
+
+        });
+
+    </script>
+
+</body>
+
+</html>

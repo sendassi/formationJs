@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrousel Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #carouselContainer {
+            text-align: center;
+        }
+        #carouselImage {
+            width: 300px;
+            height: 200px;
+            transition: opacity 0.5s ease-in-out; /* Transition fluide */
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="carouselContainer">
+    <img id="carouselImage" src="" alt="Carrousel" style="opacity: 0;">
+    <br>
+    <button id="prevButton">Précédent</button>
+    <button id="nextButton">Suivant</button>
+</div>
+
+<script>
+const images = [
+    './images/tunisia1.jpg',
+    './images/tunisia2.jpg',
+    './images/tunisia3.jpg'
+];
+let currentIndex = 0;
+const carouselImage = document.getElementById('carouselImage');
+const nextButton = document.getElementById('nextButton');
+const prevButton = document.getElementById('prevButton');
+
+// Fonction pour changer l'image avec transition
+function updateImage() {
+    carouselImage.style.opacity = 0; // Fade out
+    setTimeout(() => {
+        carouselImage.src = images[currentIndex];
+        carouselImage.style.opacity = 1; // Fade in
+    }, 500); // Attendre la fin de la transition de disparition
+}
+
+// Initialiser avec la première image
+carouselImage.src = images[currentIndex];
+carouselImage.style.opacity = 1;
+
+nextButton.onclick = function() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+};
+
+prevButton.onclick = function() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+};
+</script>
+
+</body>
+</html>

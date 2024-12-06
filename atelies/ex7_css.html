@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="UTF-8">
+   <title>Exercice contains</title>
+</head>
+<body>
+   <article class="important">Article 1</article>
+   <article class="highlight">Article 2</article>
+   <article class="important highlight">Article 3</article>
+   <article>Article 4</article>
+   <button id="checkImportant">Afficher les importants</button>   <script>
+       document.getElementById('checkImportant').addEventListener('click', function () {
+           document.querySelectorAll('article').forEach(function (article) {
+               if (article.classList.contains('important')) {
+                   console.log(article.textContent);
+               }
+           });
+       });
+   </script>
+</body>
+</html>

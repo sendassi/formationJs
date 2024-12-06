@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head><body>
+    <script>
+        class Compteur {
+            constructor() {
+                this.valeur = 0;
+            }            incrementer(pas) {
+                this.valeur= this.valeur+ pas ;
+            }            decrementer(pas) {
+                this.valeur= this.valeur - pas ;
+            }            reset() {
+                this.valeur = 0;
+            }            afficher() {
+                return `Valeur actuelle : ${this.valeur}`;
+            }
+        }        // Exemple d'utilisation
+        const compteur = new Compteur();
+        compteur.incrementer(5);       
+        compteur.decrementer(4);
+        console.log(compteur.afficher());
+        compteur.reset();
+        console.log(compteur.afficher());    </script>
+</body></html>

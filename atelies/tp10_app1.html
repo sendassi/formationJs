@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+          width: 50%;
+          border-collapse: collapse;
+          margin: 20px 0;
+        }
+        th, td {
+          border: 1px solid #ccc;
+          padding: 10px;
+          text-align: center;
+        }
+        th {
+          background-color: #F4F4F4
+;
+        }      </style>
+</head>
+<body>
+    <center>
+        <p><h2>Register Participants</h2></p>
+        <p>
+            <label>Name:</label><br>
+            <input type="text" id="nom">
+        </p>
+        <p>
+            <label>Age:</label><br>
+            <input type="Number" id="age">
+        </p>
+        <p>
+            <label>E-Mail:</label><br>
+            <input type="email" id="email">
+        </p>
+        <button id="btn_ajout">Add Participant</button>
+    </center>  
+      <div>
+        <p><h2>Participant</h2></p>
+    </div>
+    <table id="user-table">
+        <thead>
+            <tr>
+                <th style="background-color: aqua;">Nom</th>
+                <th  style="background-color: aqua;">Age</th>
+                <th  style="background-color: aqua;">Email</th>
+                <th  style="background-color: aqua;">Action</th>
+            </tr>
+        </thead>
+        <tbody>       
+        </tbody>
+    </table>   
+     <script>
+        const btn_ajout = document.getElementById('btn_ajout');
+        const table = document.querySelector('#user-table tbody');     
+        btn_ajout.addEventListener('click', () => {
+            const nom = document.getElementById('nom').value.trim();
+            const age = document.getElementById('age').value.trim();
+            const email = document.getElementById('email').value.trim();         
+            const newRow = document.createElement('tr');          
+                 newRow.innerHTML = `
+                <td>${nom}</td>
+                <td>${age}</td>
+                <td>${email}</td>
+                <td><button class="remove-btn">Remove</button></td>  `;          
+              table.appendChild(newRow);           
+              document.getElementById('nom').value = "";
+              document.getElementById('age').value = "";
+              document.getElementById('email').value = "";          
+              newRow.querySelector('.remove-btn').addEventListener('click', () => {
+                newRow.remove();
+            });
+        });
+    </script>
+</body>
+</html>
